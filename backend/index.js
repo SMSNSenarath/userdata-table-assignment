@@ -21,12 +21,12 @@ mongoose.connect(process.env.MONGO_URL).then(
     () => {
         console.log("MongoDB connected")
     },(err) => {
-        console.log(err)
+        console.log("Error!: ", err);
     }
 )
 
 //Server initialization
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("Server started on port 5000");
 });
 
