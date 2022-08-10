@@ -72,15 +72,29 @@ router.post("/login", async (req, res) =>{
         res.status(500).json(err);
         console.log(err);
     }
-
-
-
-
 })
 
+//Get User list
+router.get("/view-all", async (req, res) =>{
+    try{
+        const users = await User.find();
+        res.status(200).json(users);
+    }catch(err){
+        res.status(500).json(err);
+        console.log(err);
+    }
+    })
 
-
-
+//Get one User
+router.get("/view-user/:id", async (req, res) => {
+    try{
+        const user = await User.findOne({userId: req.params.id});
+        res.status(200).json(user);
+    }catch(err){
+        res.status(500).json(err);
+        console.log(err);
+    }
+})
 
 
 
