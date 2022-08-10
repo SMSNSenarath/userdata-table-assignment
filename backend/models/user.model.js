@@ -1,6 +1,5 @@
 //Importing mongoose library
 const mongoose = require('mongoose');
-const router = require('../routes/user.routes');
 
 //Creating a user schema
 const userSchema = new mongoose.Schema(

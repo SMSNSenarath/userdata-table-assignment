@@ -18,9 +18,11 @@ dotenv.config();
 
 //Importing routes
 const userRoute = require('./routes/user.routes');
+const noteRoute = require('./routes/note.routes');
 
 //Using routes
 app.use("/api/user", userRoute);
+app.use("/api/note", noteRoute);
 
 
 //Database connection
