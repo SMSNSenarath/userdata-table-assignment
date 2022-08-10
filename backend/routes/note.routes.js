@@ -30,6 +30,32 @@ router.get("/view-all-notes/:id",verifyTokenAndId, async (req,res) =>{
         res.status(500).json(err);
         console.log(err);
     }
+});
+
+//Update the Note
+router.put("/update/:id/:noteId", verifyTokenAndId, async (req, res) =>{
+    try{
+        const updatedNote = await Note.findByIdAndUpdate(
+            req.params.noteId,
+            {$set: req.body},
+            {new: true}
+            );
+            res.status(200).json(updatedNote);
+            // res.status(200).json({message:"Note updated successfully!"})
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+//Delete the Note
+router.delete("/delete/:id/:noteId", verifyTokenAndId, async (req,res) => {
+    try{
+        await Note.findByIdAndDelete(req.params.noteId);
+        res.status(200).json({message: "Note deleted successfully!"});
+    }catch(err){
+        res.status(500).json(err);
+    }
 })
 
 module.exports = router;
