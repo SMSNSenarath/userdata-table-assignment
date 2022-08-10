@@ -75,8 +75,14 @@ router.post("/login", async (req, res) =>{
 //Get User list
 router.get("/view-all", async (req, res) =>{
     try{
-        const users = await User.find();
-        res.status(200).json(users);
+        //Add pagination
+        const pageSize = 5;
+        const page = parseInt(req.query.page || "0");
+        const total = await User.countDocuments({});
+        const users = await User.find().limit(pageSize).skip(pageSize*page);
+        res.json({
+            totalPages: Math.ceil(total/pageSize), users
+        });
     }catch(err){
         res.status(500).json(err);
         console.log(err);

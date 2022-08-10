@@ -24,8 +24,14 @@ router.post("/create", verifyToken, async (req, res) => {
 //View the user's note list
 router.get("/view-all-notes/:id",verifyTokenAndId, async (req,res) =>{
     try{
-        const notesOfUser = await Note.find({createdBy: req.params.id});
-        res.status(200).json(notesOfUser);
+        //Add pagination
+        const pageSize = 5;
+        const page = parseInt(req.query.page || "0");
+        const total = await Note.countDocuments({});
+        const notesOfUser = await Note.find({createdBy: req.params.id}).limit(pageSize).skip(pageSize*page);
+        res.json({
+            totalPages: Math.ceil(total/pageSize), notesOfUser
+        });
     }catch(err){
         res.status(500).json(err);
         console.log(err);
