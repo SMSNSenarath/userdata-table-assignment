@@ -1,5 +1,8 @@
 import React from 'react'
 
+//Importing npm libraries
+import { Link } from "react-router-dom";
+
 //Importing components
 import Navbar from '../components/Navbar'
 
@@ -14,12 +17,8 @@ const Home = () => {
             <h2 class="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">My Notes App <i class="fa-solid fa-book"></i></h2>
             <p class="subtitle has-text-grey mb-5">This is an assignment created for the purpose of applying as a Software Engineering Intern at Surge Global.</p>
             <div class="buttons is-centered">
-              {/* <a class="mr-3" href="#"/> */}
-                {/* <img src="../images/app-page/images/buttons/app-store.svg" alt=""></a> */}
-              {/* <a href="#"/> */}
-                {/* <img src="../images/app-page/images/buttons/google-play.svg" alt=""></a> */}
-            <button className='button is-danger'>Login as Admin</button>
-            <button className='button is-warning'>Login as Student</button>
+            <Link to="/login-admin"><button className='button is-danger is-rounded'>Login as Admin</button></Link>
+            <Link to="/login"><button className='button is-warning is-rounded'>Login as Student</button></Link>
             </div>
           </div>
         </div>
