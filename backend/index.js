@@ -16,6 +16,13 @@ app.use(cors());
 //Config file for environment variable
 dotenv.config();
 
+//Importing routes
+const userRoute = require('./routes/user.routes');
+
+//Using routes
+app.use("/api/user", userRoute);
+
+
 //Database connection
 mongoose.connect(process.env.MONGO_URL).then(
     () => {
