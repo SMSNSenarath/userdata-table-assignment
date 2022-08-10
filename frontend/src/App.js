@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 
 //Importing components
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import LoginAdmin from "./pages/LoginAdmin";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
 
 function App() {
   return (

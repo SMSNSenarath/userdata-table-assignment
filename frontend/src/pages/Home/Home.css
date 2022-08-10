@@ -1,0 +1,31 @@
+#heading{
+    color: #2B2D42;
+}
+
+#homeContainer{
+    width :100%;
+    height: 100vh;
+    /* background-color: #EDF2F4; */
+}
+
+#adminBtn{
+    background-color: #EF233C ; 
+} 
+
+#studentBtn{
+    border-color: #EF233C; 
+    color: #EF233C;
+    
+}
+#studentBtn:hover {
+    background-color: #EF233C;
+    color: white;
+  }
+
+#adminBtn:hover {
+    background-color: white;
+    color: #EF233C;
+    border-color: #EF233C; 
+ }
+
+
