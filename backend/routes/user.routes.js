@@ -57,7 +57,7 @@ router.post("/login", async (req, res) =>{
             accountType: user.accountType
         },
         process.env.JWT_SECRET_KEY,
-        {expiresIn : "1d"}
+        {expiresIn : "3d"}
     );
 
     //Adding access token and decrypted password to the response

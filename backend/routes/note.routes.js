@@ -21,6 +21,17 @@ router.post("/create", verifyToken, async (req, res) => {
     }
 });
 
+//View a single user note
+router.get("/view-note/:id/:noteId",verifyTokenAndId, async (req,res) => {
+    try{
+        const note = await Note.findById(req.params.noteId);
+        res.status(200).json(note);
+    }catch(err){
+        res.status(500).json(err);
+        console.log(err);
+    }
+})
+
 //View the user's note list
 router.get("/view-all-notes/:id",verifyTokenAndId, async (req,res) =>{
     try{
