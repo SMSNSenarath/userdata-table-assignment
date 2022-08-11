@@ -26,6 +26,9 @@ const ViewNotesList = () => {
 
   console.log(notes);
   
+  const handleDelete = (noteId) => {
+    console.log("Hello");
+  }
 
   const active = isModal ? "is-active" : "";
 
@@ -49,7 +52,15 @@ const ViewNotesList = () => {
           <a href="#" class="card-footer-item" onClick={handleClick}>
             Edit
           </a>
-          <a href="#" class="card-footer-item">
+          {/* Delete note */}
+          <a class="card-footer-item" onClick={async () => {
+                  console.log(note);
+                  await axios.delete(
+                    `http://localhost:5000/api/note/delete/${user._id}/${note._id}`,token
+                  );
+                  window.location.reload();
+                  alert("Note deleted successfully!");
+                }}>
             Delete
           </a>
         </footer>
