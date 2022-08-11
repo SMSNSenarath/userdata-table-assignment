@@ -34,7 +34,6 @@ const CreateStudent = () => {
         </div>
         <div>
           <label class="label">Date of Birth</label>
-          <input class="input is-medium" type="text" />
           <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         </div>
         <div class="field">
