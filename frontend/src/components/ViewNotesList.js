@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const ViewNotesList = () => {
+  
+  const [notes, setNotes] = useState([]);
   const [isModal, setIsModal] = useState(false);
+  const {user} = useContext(AuthContext);
+  const token = {
+    headers: {token: user.accessToken},
+  }
 
   const handleClick = () => {
     setIsModal(!isModal);
     console.log(isModal);
   };
+
+  useEffect(() => {
+   const getNotes = async () => {
+    const res = await axios.get(`http://localhost:5000/api/note/view-all-notes/${user._id}`, token);
+    setNotes(res.data.notesOfUser);
+   }
+   getNotes();
+  }, [user._id]);
+
+  console.log(notes);
+  
 
   const active = isModal ? "is-active" : "";
 
@@ -14,16 +33,15 @@ const ViewNotesList = () => {
     <div class="column is-two-thirds has-text-left">
       <h1 class="title is-1">My Notes</h1>
       {/* 1st Note  */}
-      <div class="card">
+      {notes?.map((note)=>{
+        return(<div class="card">
         <header class="card-header">
-          <p class="card-header-title">Component(Title)</p>
+          <p class="card-header-title">{note.title}</p>
           <button class="card-header-icon" aria-label="more options">
           </button>
         </header>
         <div class="card-content">
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec iaculis mauris. (Description)
+          <div class="content">{note.description}
             <br />
           </div>
         </div>
@@ -35,35 +53,8 @@ const ViewNotesList = () => {
             Delete
           </a>
         </footer>
-      </div>
-      {/* 1st Note  */}
-      {/* 2nd Note  */}
-      <div class="card mt-3">
-        <header class="card-header">
-          <p class="card-header-title">Componen(Title)</p>
-          <button class="card-header-icon" aria-label="more options">
-            <span class="icon">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-        </header>
-        <div class="card-content">
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec iaculis mauris. (Description)
-            <br />
-          </div>
-        </div>
-        <footer class="card-footer">
-          <a href="#" class="card-footer-item">
-            Edit
-          </a>
-          <a href="#" class="card-footer-item">
-            Delete
-          </a>
-        </footer>
-      </div>
-      {/* 2nd Note  */}
+      </div>)
+      })}
 
       {/* Modal */}
       <div className={`modal ${active}`}>
