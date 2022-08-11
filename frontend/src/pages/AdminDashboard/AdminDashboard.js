@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 import ViewProfile from "../../components/ViewProfile"
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
@@ -6,12 +8,21 @@ import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [isModal, setIsModal] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const handleRowClick = () => {
     setIsModal(!isModal);
     console.log(isModal);
   };
 
+  useEffect(() => {
+    const getUsers = async () => {
+     const res = await axios.get(`http://localhost:5000/api/user/view-all`);
+     setUsers(res.data.users);
+    }
+    getUsers();
+   }, []);
+   console.log(users);
   const active = isModal ? "is-active" : "";
 
   return (
