@@ -20,12 +20,14 @@
 #studentBtn:hover {
     background-color: #EF233C;
     color: white;
+    transition: all 0.6s;
   }
 
 #adminBtn:hover {
     background-color: white;
     color: #EF233C;
     border-color: #EF233C; 
+    transition: all 0.6s;
  }
 
 
