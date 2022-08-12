@@ -1,38 +1,50 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import ViewProfile from "../../components/ViewProfile"
+
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
+import UserRow from "../../components/UserRow";
 
 const AdminDashboard = () => {
-  const [isModal, setIsModal] = useState(false);
   const [users, setUsers] = useState([]);
-
-  const handleRowClick = () => {
-    setIsModal(!isModal);
-    console.log(isModal);
-  };
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
     const getUsers = async () => {
-     const res = await axios.get(`http://localhost:5000/api/user/view-all`);
-     setUsers(res.data.users);
-    }
+      const res = await axios.get(
+        `http://localhost:5000/api/user/view-all?page=${pageNumber}`
+      );
+      setUsers(res.data.users);
+      setTotalPages(res.data?.totalPages);
+    };
     getUsers();
-   }, []);
-   console.log(users);
-  const active = isModal ? "is-active" : "";
+  }, [pageNumber]);
+  console.log(totalPages);
+
+  const pages = new Array(totalPages).fill(null).map((v, i) => i);
+
+  const goPrevious = () => {
+    setPageNumber(Math.max(0, pageNumber - 1));
+  };
+
+  const goNext = () => {
+    setPageNumber(Math.min(totalPages - 1, pageNumber + 1));
+  };
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <section class="container mt-3">
         <div clas="rows">
           <div class="columns">
             <div class="column">
-              <Link to ="/create-student" class="button is-primary is-alt is-medium">
+              <Link
+                to="/create-student"
+                class="button is-primary is-alt is-medium"
+              >
                 Create a New User
               </Link>
               <div class="row ">
@@ -78,7 +90,7 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
@@ -105,170 +117,45 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th>1</th>
-                    <td>
-                      <a
-                        href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                        title="Leicester City F.C."
-                      >
-                        Shakila
-                      </a>{" "}
-                    </td>
-                    <td>Nishadini</td>
-                    <td>smsnsenarath@gmail.com</td>
-                    <td>1997-02-08</td>
-                    <td>0776209217</td>
-                    <td>True</td>
-                    <td>Student</td>
-                    <td>
-                      <button
-                        class="button is-light is-link is-small"
-                        onClick={handleRowClick}
-                      >
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>
-                      <a
-                        href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                        title="Leicester City F.C."
-                      >
-                        Shakila
-                      </a>{" "}
-                    </td>
-                    <td>Nishadini</td>
-                    <td>smsnsenarath@gmail.com</td>
-                    <td>1997-02-08</td>
-                    <td>0776209217</td>
-                    <td>True</td>
-                    <td>Student</td>
-                    <td>
-                      <button class="button is-light is-link is-small">
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td>
-                      <a
-                        href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                        title="Leicester City F.C."
-                      >
-                        Shakila
-                      </a>{" "}
-                    </td>
-                    <td>Nishadini</td>
-                    <td>smsnsenarath@gmail.com</td>
-                    <td>1997-02-08</td>
-                    <td>0776209217</td>
-                    <td>True</td>
-                    <td>Student</td>
-                    <td>
-                      <button class="button is-light is-link is-small">
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>4</th>
-                    <td>
-                      <a
-                        href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                        title="Leicester City F.C."
-                      >
-                        Shakila
-                      </a>{" "}
-                    </td>
-                    <td>Nishadini</td>
-                    <td>smsnsenarath@gmail.com</td>
-                    <td>1997-02-08</td>
-                    <td>0776209217</td>
-                    <td>True</td>
-                    <td>Student</td>
-                    <td>
-                      <button class="button is-light is-link is-small">
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>5</th>
-                    <td>
-                      <a
-                        href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                        title="Leicester City F.C."
-                      >
-                        Shakila
-                      </a>{" "}
-                    </td>
-                    <td>Nishadini</td>
-                    <td>smsnsenarath@gmail.com</td>
-                    <td>1997-02-08</td>
-                    <td>0776209217</td>
-                    <td>True</td>
-                    <td>Student</td>
-                    <td>
-                      <button class="button is-light is-link is-small">
-                        View
-                      </button>
-                    </td>
-                  </tr>
+                  {users?.map((user) => {
+                    return (
+                      <tr>
+                        <UserRow user={user} />
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
 
               {/* Pagination */}
               <nav class="pagination" role="navigation" aria-label="pagination">
-                <a class="pagination-previous">Previous</a>
-                <a class="pagination-next">Next page</a>
-                <ul class="pagination-list">
-                  <li>
-                    <a class="pagination-link" aria-label="Goto page 1">
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <span class="pagination-ellipsis">&hellip;</span>
-                  </li>
-                  <li>
-                    <a class="pagination-link" aria-label="Goto page 45">
-                      45
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      class="pagination-link is-current"
-                      aria-label="Page 46"
-                      aria-current="page"
-                    >
-                      46
-                    </a>
-                  </li>
-                  <li>
-                    <a class="pagination-link" aria-label="Goto page 47">
-                      47
-                    </a>
-                  </li>
-                  <li>
-                    <span class="pagination-ellipsis">&hellip;</span>
-                  </li>
-                  <li>
-                    <a class="pagination-link" aria-label="Goto page 86">
-                      86
-                    </a>
-                  </li>
-                </ul>
+                <a class="pagination-previous" onClick={goPrevious}>
+                  Previous
+                </a>
+                <a class="pagination-next" onClick={goNext}>
+                  Next page
+                </a>
+                
+                  <ul class="pagination-list">
+                  {pages.map((pageIndex) => (
+                    <li>
+                      <a
+                        class=""
+                        className={`${
+                          pageNumber == pageIndex
+                            ? "pagination-link is-current"
+                            : "pagination-link"
+                        }`}
+                        onClick={() => setPageNumber(pageIndex)}>{pageIndex + 1}
+                      </a>
+                    </li>
+                  ))}
+                  </ul>
+                
               </nav>
             </div>
           </div>
         </div>
-
-        {/* Modal */}
-        <ViewProfile active={active} handleRowClick />
       </section>
     </>
   );

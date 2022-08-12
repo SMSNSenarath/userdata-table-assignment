@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ViewProfile = ({ active, handleRowClick }) => {
+const ViewProfile = ({ active, handleRowClick, user }) => {
   const cancelClick = () => {
-    active = false;
-    console.log("View Profile" + active);
+    window.location.reload();
   };
   return (
     <>
@@ -11,7 +10,9 @@ const ViewProfile = ({ active, handleRowClick }) => {
         <div className="modal-background" />
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Shakila Nishadini</p>
+            <p className="modal-card-title">
+              {user.firstName} {user.lastName}
+            </p>
             <button
               onClick={handleRowClick}
               className="delete"
@@ -29,16 +30,13 @@ const ViewProfile = ({ active, handleRowClick }) => {
             <div class="field">
               <label class="label">Description</label>
               <div class="control">
-                <textarea class="textarea is-medium"></textarea>
+                <textarea
+                  class="textarea is-medium"
+                  placeholder={user.lastName}
+                ></textarea>
               </div>
             </div>
             <div class="control">
-              <button
-                type="submit"
-                class="button is-link is-fullwidth has-text-weight-medium is-medium mb-3"
-              >
-                Create Note
-              </button>
               <button
                 type="submit"
                 class="button is-link is-fullwidth has-text-weight-medium is-medium"
