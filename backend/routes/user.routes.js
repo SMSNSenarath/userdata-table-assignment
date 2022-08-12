@@ -35,42 +35,47 @@ router.post("/register", async (req, res) => {
 
 
 //Login User
-router.post("/login", async (req, res) =>{
-    try{
-        const user = await User.findOne({email: req.body.email});
-        !user && res.status(404).json({message: "User not found"});
-        
-    //Password decryption process from DB
-    const decryptedPassword = CryptoJS.AES.decrypt(user.password,process.env.PASSWORD_SECRET_KEY);
-
-    const originalPassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
-
-    if(originalPassword !== req.body.password){
-        res.status(401).json({message: "Wrong password"})
+router.post("/login", async (req, res) => {
+    try {
+      const user = await User.findOne({ email: req.body.email });
+      if (!user) {
+        res.status(404).json({ message: "User not found" });
+      } else {
+        //Password decryption process from DB
+        const decryptedPassword = CryptoJS.AES.decrypt(
+          user.password,
+          process.env.PASSWORD_SECRET_KEY
+        );
+  
+        //converting the decrypted password to string for comparison
+        const originalPassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
+  
+        if (originalPassword !== req.body.password) {
+          res.status(401).json({ message: "Wrong password" });
+        } else {
+          //Creating a token for the User
+          const accessToken = jwt.sign(
+            {
+              userId: user.userId,
+              id: user._id,
+              accountType: user.accountType,
+            },
+            process.env.JWT_SECRET_KEY,
+            { expiresIn: "3d" }
+          );
+  
+          //Adding access token and decrypted password to the response
+          const { password, ...others } = user._doc;
+  
+          //Return the response with the access token
+          res.status(200).json({ ...others, accessToken });
+        }
+      }
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
     }
-
-    //Creating a token for the User
-    const accessToken = jwt.sign(
-        {
-            userId: user.userId,
-            id: user._id,
-            accountType: user.accountType
-        },
-        process.env.JWT_SECRET_KEY,
-        {expiresIn : "3d"}
-    );
-
-    //Adding access token and decrypted password to the response
-    const {password, ...others} = user._doc; 
-    
-    //Return the response with the access token
-    res.status(200).json({...others,accessToken});
-
-    }catch(err){
-        res.status(500).json(err);
-        console.log(err);
-    }
-})
+  });
 
 //Get User list
 router.get("/view-all", async (req, res) =>{
