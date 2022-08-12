@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./ViewProfile.css";
+
 const ViewProfile = ({ active, handleRowClick, user }) => {
   const cancelClick = () => {
     window.location.reload();
@@ -8,43 +10,69 @@ const ViewProfile = ({ active, handleRowClick, user }) => {
     <>
       <div className={`modal ${active}`}>
         <div className="modal-background" />
-        <div className="modal-card">
-          <header className="modal-card-head">
-            <p className="modal-card-title">
-              {user.firstName} {user.lastName}
-            </p>
-            <button
-              onClick={handleRowClick}
-              className="delete"
-              aria-label="close"
-            />
-          </header>
+        <div
+          className="modal-card"
+          style={{ width: "1390px", height: "700px" }}
+        >
           <section className="modal-card-body">
-            <h1 class="title is-1">Edit a Note</h1>
-            <div class="field">
-              <label class="label">Title</label>
-              <div class="control">
-                <input class="input is-medium" type="text" />
+            <section class="container">
+              <div class="columns is-multiline">
+                <div class="column is-8 is-offset-2 register">
+                  <div class="columns">
+                    <div class="column left">
+                      <h1 class="title is-1">
+                        {user.firstName}
+                        <br />
+                        {user.lastName}
+                      </h1>
+                      <h2 class="subtitle colored is-4">
+                        {user.accountType.charAt(0).toUpperCase() +
+                          user.accountType.slice(1)}{" "}
+                        -{" "}
+                        <span
+                          class={`tag ${
+                            user.status ? "is-success" : "is-danger"
+                          }`}
+                        >
+                          {user.status ? "Active" : "Inactive"}
+                        </span>
+                      </h2>
+                      <p>
+                        Born on - {user.dateOfBirth.toString().slice(0, 10)}{" "}
+                        <br /> <br />
+                        To Contact -{" "}
+                        <span class="tag is-primary is-medium">
+                          {user.mobile}
+                        </span>
+                      </p>
+                    </div>
+                    <div class="column right has-text-centered">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/800px-User-avatar.svg.png"
+                        width={200}
+                        style={{ marginTop: "-20px" }}
+                      />
+                      <h1 class="title is-4">{user.email}</h1>
+                      <p class="description">
+                        Find {user.firstName} from this email address
+                      </p>
+                      <form>
+                        <button
+                          class="button is-block is-primary is-fullwidth is-medium"
+                          onClick={cancelClick}
+                        >
+                          Back
+                        </button>
+                        <br />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-6 is-offset-2">
+                  <br />
+                </div>
               </div>
-            </div>
-            <div class="field">
-              <label class="label">Description</label>
-              <div class="control">
-                <textarea
-                  class="textarea is-medium"
-                  placeholder={user.lastName}
-                ></textarea>
-              </div>
-            </div>
-            <div class="control">
-              <button
-                type="submit"
-                class="button is-link is-fullwidth has-text-weight-medium is-medium"
-                onClick={cancelClick}
-              >
-                Cancel
-              </button>
-            </div>
+            </section>
           </section>
         </div>
       </div>

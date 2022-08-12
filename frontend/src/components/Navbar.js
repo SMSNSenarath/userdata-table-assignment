@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
+
 
 
 const Navbar = () => {
@@ -28,24 +29,9 @@ const Navbar = () => {
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <Link to = "/" class="navbar-item">
         Home
-      </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <hr class="navbar-divider"/>
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+      </Link>
     </div>
 
     {user?(<div class="navbar-end">
