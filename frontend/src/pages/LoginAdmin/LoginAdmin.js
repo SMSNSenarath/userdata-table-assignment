@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import Navbar from "../../components/Navbar";
 
 const LoginAdmin = () => {
   //Declare states
@@ -45,13 +46,14 @@ const LoginAdmin = () => {
   };
   return (
     <>
+    <Navbar/>
       <section className="hero is-fullheight">
         <div className="hero-body">
           <div className="container has-text-centered">
             <div className="column is-4 is-offset-4">
-              <h3 className="title has-text-black">Login</h3>
+              <h2 className="title" style={{color:"#2B2D42", fontSize: "3rem"}}>Login</h2>
               <hr className="login-hr" />
-              <p className="subtitle has-text-black">
+              <p className="subtitle" style ={{color:"#2B2D42"}}>
                 Please login to proceed.
               </p>
               <div className="box">
@@ -81,8 +83,9 @@ const LoginAdmin = () => {
                   </div>
                   <div className="field"></div>
                   <button
-                    className="button is-block is-warning is-large is-fullwidth is-rounded"
+                    className="button is-hovered is-block is-warning is-large is-fullwidth is-rounded has-text-white"
                     onClick={handleLogin}
+                    style={{backgroundColor:"#EF233C"}}
                   >
                     Login as Admin
                   </button>

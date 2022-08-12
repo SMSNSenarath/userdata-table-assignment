@@ -5,7 +5,11 @@
 #homeContainer{
     width :100%;
     height: 100vh;
-    /* background-color: #EDF2F4; */
+    background-color: white;
+}
+
+#paragraph{
+    color :#2B2D42;
 }
 
 #adminBtn{
@@ -29,5 +33,7 @@
     border-color: #EF233C; 
     transition: all 0.6s;
  }
+
+ 
 
 

@@ -29,7 +29,7 @@ const Navbar = () => {
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <Link to = "/" class="navbar-item">
+      <Link to = "/" class="navbar-item" style={{fontSize:"1.5rem"}}>
         Home
       </Link>
     </div>
@@ -37,11 +37,11 @@ const Navbar = () => {
     {user?(<div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-primary" style={{backgroundColor:"#a8dadc", color:"#2B2D42"}}>
             <strong>{user.firstName} ({user.accountType.charAt(0).toUpperCase() +
                         user.accountType.slice(1)})</strong>
           </a>
-          <a class="button is-light" onClick={handleLogout}>
+          <a class="button is-light" style={{color: "#2B2D42"}} onClick={handleLogout}>
             Log out
           </a>
         </div>
