@@ -22,6 +22,7 @@ const CreateNote = () => {
     const res = await axios.post(`http://localhost:5000/api/note/create/`,noteDetails, token)
     .then(()=>{
       alert("Note created successfully!");
+      window.location.reload();
     })
     .catch((err)=>{
       alert(err);
