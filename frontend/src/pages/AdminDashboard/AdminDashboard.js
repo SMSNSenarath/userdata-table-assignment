@@ -94,6 +94,7 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
+        {/* User data table */}
         <div clas="rows">
           <div class="column">
             <div class="box content">
@@ -111,9 +112,6 @@ const AdminDashboard = () => {
                     <th>Status</th>
                     <th>Account Type</th>
                     <th>Click to View User</th>
-                    {/* <th>
-                      <abbr title="Played">Last Name</abbr>
-                    </th> */}
                   </tr>
                 </thead>
                 <tbody>

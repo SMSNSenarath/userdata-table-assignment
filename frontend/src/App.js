@@ -12,7 +12,7 @@ import Login from "./pages/Login/Login";
 import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
-import CreateStudent from "./pages/CreateStudent";
+import CreateStudent from "./pages/CreateStudent/CreateStudent";
 import { AuthContextProvider,AuthContext} from "./context/AuthContext";
 import { useContext } from "react";
 
