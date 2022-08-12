@@ -16,6 +16,9 @@ import CreateStudent from "./pages/CreateStudent/CreateStudent";
 import { AuthContextProvider,AuthContext} from "./context/AuthContext";
 import { useContext } from "react";
 import NotFound from "./pages/NotFound/NotFound";
+import StudentProtectedRoutes from "./ProtectedRoutes/StudentProtectedRoutes";
+import AdminProtectedRoutes from "./ProtectedRoutes/AdminProtectedRoutes";
+
 
 function App() {
   const {user} = useContext(AuthContext);
@@ -25,22 +28,43 @@ function App() {
     <AuthContextProvider>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route
+          {/* Home Page for any guest user */}
+          <Route path="/" element={<Home />} />
+ 
+          {/* If already logged in as a student, redirect to student dashboard */}
+          <Route
             path="/login-admin"
-            element={loggedAsAdmin ? <Navigate to="/admin-dashboard" /> : <LoginAdmin />}
+            element={
+              loggedAsAdmin ? (
+                <Navigate to="/admin-dashboard" />
+              ) : (
+                <LoginAdmin />
+              )
+            }
           />
-      <Route
+ 
+          {/* If already logged as admin, redirect to admin dashboard */}
+          <Route
             path="/login"
-            element={loggedAsStudent ? <Navigate to="/student-dashboard" /> : <Login />}
+            element={
+              loggedAsStudent ? <Navigate to="/student-dashboard" /> : <Login />
+            }
           />
-      <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
-      <Route path="/student-dashboard" element={<StudentDashboard/>}/>
-      <Route path="/create-student" element={<CreateStudent/>}/>
-      <Route path="/*" element={<NotFound/>}/>
-
-
-    </Routes>
+ 
+          {/* 404 Page Not Found Page */}
+          <Route path="/*" element={<NotFound/>} />
+ 
+          {/* Protected Students Routes */}
+          <Route element={<StudentProtectedRoutes />}>
+            <Route path="/student-dashboard" element={<StudentDashboard />} />
+          </Route>
+ 
+          {/* Protected Admin Routes */}
+          <Route element={<AdminProtectedRoutes />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/create-student" element={<CreateStudent />} />
+          </Route>
+        </Routes>
     </BrowserRouter>
     </AuthContextProvider>
   );
