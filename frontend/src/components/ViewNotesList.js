@@ -43,12 +43,8 @@ const ViewNotesList = () => {
   return (
     <div class="column has-text-left">
       <h1 class="title is-1">My Notes</h1>
-      {/* 1st Note  */}
-      {notes?.map((note) => {
-        return <Note note={note} />;
-      })}
-        {/* Pagination */}
-      <nav class="pagination" role="navigation" aria-label="pagination">
+              {/* Pagination */}
+              <nav class="pagination" role="navigation" aria-label="pagination">
         <a class="pagination-previous" onClick={goPrevious}>
           Previous
         </a>
@@ -71,8 +67,12 @@ const ViewNotesList = () => {
             </li>
              ))}
           </ul>
-        
       </nav>
+      {/* 1st Note  */}
+      {notes?.map((note) => {
+        return <Note note={note} />;
+      })}
+
     </div>
   );
 };
