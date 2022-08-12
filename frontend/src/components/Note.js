@@ -35,7 +35,7 @@ const Note = ({ note }) => {
     const res = await axios.put(`http://localhost:5000/api/note/update/${user._id}/${note._id}`, updatedNote, token)
     .then(()=>{
         alert("Note updated successfully!");
-        window.location.reload();
+        window.location.reload()
     })
     .catch((err)=>{
         alert(err);

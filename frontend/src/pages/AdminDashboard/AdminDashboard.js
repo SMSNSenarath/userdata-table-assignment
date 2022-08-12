@@ -6,9 +6,10 @@ import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 import UserRow from "../../components/UserRow";
+import { ThreeDots } from "react-loader-spinner";
 
 const AdminDashboard = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -115,13 +116,17 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {users?.map((user) => {
-                    return (
-                      <tr>
-                        <UserRow user={user} />
-                      </tr>
-                    );
-                  })}
+                {users ? (
+                    users?.map((user) => {
+                      return (
+                        <tr>
+                          <UserRow user={user} />
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <ThreeDots color="#a8dadc" height={80} width={80} />
+                  )}
                 </tbody>
               </table>
 

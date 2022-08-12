@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import Note from "./Note";
+import { ThreeDots } from "react-loader-spinner";
 
 const ViewNotesList = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(null);
   const [isModal, setIsModal] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(0);
@@ -68,10 +69,12 @@ const ViewNotesList = () => {
              ))}
           </ul>
       </nav>
-      {/* 1st Note  */}
-      {notes?.map((note) => {
-        return <Note note={note} />;
-      })}
+      
+      {notes ? (
+        notes.map((note) => <Note note={note} />)
+      ) : (
+        <ThreeDots color="#a8dadc" height={80} width={80} />
+      )}
 
     </div>
   );
