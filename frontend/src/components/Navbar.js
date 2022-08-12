@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import {useNavigate} from "react-router-dom";
+
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    window.localStorage.clear();
+    navigate("/");
+    window.location.reload(true);
+  }
+  
+  
+  
   return (
     <>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation" style={{backgroundColor:"#2B2D42"}}>
   <div class="navbar-brand">
-    {/* <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
-    </a> */}
-
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -21,11 +31,6 @@ const Navbar = () => {
       <a class="navbar-item">
         Home
       </a>
-
-      {/* <a class="navbar-item">
-        Documentation
-      </a> */}
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
@@ -35,12 +40,6 @@ const Navbar = () => {
           <a class="navbar-item">
             About
           </a>
-          {/* <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a> */}
           <hr class="navbar-divider"/>
           <a class="navbar-item">
             Report an issue
@@ -49,18 +48,19 @@ const Navbar = () => {
       </div>
     </div>
 
-    <div class="navbar-end">
+    {user?(<div class="navbar-end">
       <div class="navbar-item">
-        {/* <div class="buttons">
+        <div class="buttons">
           <a class="button is-primary">
-            <strong>Sign up</strong>
+            <strong>{user.firstName} ({user.accountType.charAt(0).toUpperCase() +
+                        user.accountType.slice(1)})</strong>
           </a>
-          <a class="button is-light">
-            Log in
+          <a class="button is-light" onClick={handleLogout}>
+            Log out
           </a>
-        </div> */}
+        </div>
       </div>
-    </div>
+    </div>):("")}
   </div>
 </nav>
     </>
@@ -68,3 +68,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+

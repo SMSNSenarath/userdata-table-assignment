@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 
 //Importing components
@@ -17,13 +18,21 @@ import { useContext } from "react";
 
 function App() {
   const {user} = useContext(AuthContext);
+  const loggedAsStudent = user && user.accountType === "student";
+  const loggedAsAdmin = user && user.accountType === "admin";
   return (
     <AuthContextProvider>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/login-admin" element={<LoginAdmin/>}/>
+      <Route
+            path="/login-admin"
+            element={loggedAsAdmin ? <Navigate to="/admin-dashboard" /> : <LoginAdmin />}
+          />
+      <Route
+            path="/login"
+            element={loggedAsStudent ? <Navigate to="/student-dashboard" /> : <Login />}
+          />
       <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
       <Route path="/student-dashboard" element={<StudentDashboard/>}/>
       <Route path="/create-student" element={<CreateStudent/>}/>
