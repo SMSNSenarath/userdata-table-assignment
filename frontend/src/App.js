@@ -15,6 +15,7 @@ import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import CreateStudent from "./pages/CreateStudent/CreateStudent";
 import { AuthContextProvider,AuthContext} from "./context/AuthContext";
 import { useContext } from "react";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const {user} = useContext(AuthContext);
@@ -36,6 +37,8 @@ function App() {
       <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
       <Route path="/student-dashboard" element={<StudentDashboard/>}/>
       <Route path="/create-student" element={<CreateStudent/>}/>
+      <Route path="/*" element={<NotFound/>}/>
+
 
     </Routes>
     </BrowserRouter>
