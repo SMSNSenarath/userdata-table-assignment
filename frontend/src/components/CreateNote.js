@@ -19,10 +19,9 @@ const CreateNote = () => {
       title: title,
       description: description
     }
-    const res = await axios.post(`http://localhost:5000/api/note/create/`,noteDetails, token)
+    await axios.post(`http://localhost:5000/api/note/create/`,noteDetails, token)
     .then(()=>{
       alert("Note created successfully!");
-      console.log(res);
       window.location.reload();
     })
     .catch((err)=>{
