@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 import UserRow from "../../components/UserRow";
 import { ThreeDots } from "react-loader-spinner";
+import Search from "../../components/Search";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState(null);
@@ -48,50 +49,14 @@ const AdminDashboard = () => {
               >
                 Create a New User
               </Link>
-              <div class="row ">
-                <div class="column is-centered">
-                  <div class="field has-addons mt-5">
-                    <div class="control">
-                      <input
-                        class="input"
-                        type="text"
-                        placeholder="Search By Name"
-                      />
-                    </div>
-                    <div class="control">
-                      <a class="button is-info">Search</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="field has-addons mt-5">
-                    <div class="control">
-                      <input
-                        class="input"
-                        type="text"
-                        placeholder="Search By Id"
-                      />
-                    </div>
-                    <div class="control">
-                      <a class="button is-info">Search</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="field has-addons mt-5">
-                    <div class="control">
-                      <input
-                        class="input"
-                        type="text"
-                        placeholder="Search By Email"
-                      />
-                    </div>
-                    <div class="control">
-                      <a class="button is-info">Search</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <section
+                class="hast-text-centerd"
+                style={{
+                  height: "15rem",
+                }}
+              >
+                <Search />
+              </section>
             </div>
           </div>
         </div>

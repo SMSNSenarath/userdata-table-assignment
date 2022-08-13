@@ -29,7 +29,7 @@ const Navbar = () => {
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <Link to = "/" class="navbar-item" style={{fontSize:"1.5rem"}}>
+      <Link to = "/" class="navbar-item" style={{fontSize:"1.5rem", backgroundColor:"transparent"}}>
         Home
       </Link>
     </div>
