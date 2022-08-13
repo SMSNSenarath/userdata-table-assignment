@@ -36,7 +36,7 @@ router.get("/view-note/:id/:noteId",verifyTokenAndId, async (req,res) => {
 router.get("/view-all-notes/:id",verifyTokenAndId, async (req,res) =>{
     try{
         //Add pagination
-        const pageSize = 5;
+        const pageSize = 3;
         const page = parseInt(req.query.page || "0");
         const total = await Note.countDocuments({});
         const notesOfUser = await Note.find({createdBy: req.params.id}).sort({ _id: -1 }).limit(pageSize).skip(pageSize*page);

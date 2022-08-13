@@ -105,6 +105,55 @@ router.get("/view-user/:id", async (req, res) => {
     }
 })
 
+//Search User by firstName
+router.post("/search-by-name", (req, res) => {
+  let userPattern = new RegExp(req.body.queryFirstName);
+  User.find({ firstName: { $regex: userPattern } })
+    .then((user) => {
+      if (user.length > 0) {
+        res.json({ user });
+      } else {
+        res.json({ message: "No Users with that name" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
+//Search User by email
+router.post("/search-by-email", (req, res) => {
+  let userPattern = new RegExp(req.body.queryEmail);
+  User.find({ email: { $regex: userPattern } })
+    .limit(3)
+    .then((user) => {
+      if (user.length > 0) {
+        res.json({ user });
+      } else {
+        res.json({ message: "No Users with that email" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
+//Search User by userId
+router.post("/search-by-userId", (req, res) => {
+  User.find({ userId: req.body.queryUserId })
+    .then((user) => {
+      if (user.length > 0) {
+        res.json({ user });
+      } else {
+        res.json({ message: "No Users with that user id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
+
 
 
 module.exports = router;
