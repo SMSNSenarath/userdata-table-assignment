@@ -67,7 +67,7 @@
 
    > - View single User
    ![ViewAUser](/screenshots/image_13.png)
-   
+
    > - Search for a User by Id, firstName and Email seperately
    ![Search](/screenshots/image_14.png)
 
