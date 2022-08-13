@@ -42,10 +42,13 @@
 
    > - View Notes
    ![ViewNote](/screenshots/image_6.png)
+
    > - Create Note
    ![CreateNote](/screenshots/image_7.png)
+
    > - Edit Note
    ![EditNote](/screenshots/image_8.png)
+
    > - Delete Note
 
 7. If you click the Login as an Admin button, you will be redirected to the admin login page.
@@ -58,10 +61,13 @@
 
    > - View All Users in a table
    ![ViewUsers](/screenshots/image_11.png)
+
    > - Create a Student (Once the 'Create a Student' is clicked, you will be navigated to the following page)
    ![CreateStudent](/screenshots/image_12.png)
+
    > - View single User
    ![ViewAUser](/screenshots/image_13.png)
+   
    > - Search for a User by Id, firstName and Email seperately
    ![Search](/screenshots/image_14.png)
 
