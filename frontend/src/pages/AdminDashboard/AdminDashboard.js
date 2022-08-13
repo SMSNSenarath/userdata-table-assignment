@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+//Importing Libraries
+import React, { useState, useEffect} from "react";
 import axios from "axios";
-
-import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
-import "./AdminDashboard.css";
-import UserRow from "../../components/UserRow";
 import { ThreeDots } from "react-loader-spinner";
+
+//Importing Component
+import Navbar from "../../components/Navbar";
 import Search from "../../components/Search";
+import UserRow from "../../components/UserRow";
+
+//Importing CSS
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState(null);
@@ -45,9 +48,9 @@ const AdminDashboard = () => {
             <div class="column">
               <Link
                 to="/create-student"
-                class="button is-primary is-alt is-medium"
+                class="button is-link is-alt is-medium is-rounded"
               >
-                Create a New User
+                Create a Student
               </Link>
               <section
                 class="hast-text-centerd"
@@ -96,7 +99,7 @@ const AdminDashboard = () => {
               </table>
 
               {/* Pagination */}
-              <nav class="pagination" role="navigation" aria-label="pagination">
+              <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
                 <a class="pagination-previous" onClick={goPrevious}>
                   Previous
                 </a>
@@ -119,7 +122,6 @@ const AdminDashboard = () => {
                     </li>
                   ))}
                   </ul>
-                
               </nav>
             </div>
           </div>

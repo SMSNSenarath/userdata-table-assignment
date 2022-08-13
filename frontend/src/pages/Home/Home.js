@@ -1,11 +1,12 @@
+//Importing Libraries
 import React from 'react'
-import "./Home.css"
-
-//Importing npm libraries
 import { Link } from "react-router-dom";
 
 //Importing components
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
+
+//Importing CSS
+import "./Home.css"
 
 const Home = () => {
   return (

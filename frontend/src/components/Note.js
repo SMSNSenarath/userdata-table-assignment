@@ -1,3 +1,4 @@
+//Importing Libraries
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -60,7 +61,7 @@ const Note = ({ note }) => {
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item" onClick={handleClick}>
+          <a class="card-footer-item" onClick={handleClick}>
             Edit
           </a>
           {/* Delete note */}
@@ -86,7 +87,7 @@ const Note = ({ note }) => {
         <div className="modal-background" />
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Edit Note</p>
+            <p className="modal-card-title" style={{color: "#2B2D42"}}>Edit Note</p>
             <button
               onClick={handleClick}
               className="delete"
@@ -94,7 +95,7 @@ const Note = ({ note }) => {
             />
           </header>
           <section className="modal-card-body">
-            <h1 class="title is-1">Edit a Note</h1>
+            <h1 class="title is-1" style={{color: "#2B2D42"}}>Edit a Note</h1>
             <div class="field">
               <label class="label">Title</label>
               <div class="control">
@@ -119,15 +120,17 @@ const Note = ({ note }) => {
             <div class="control">
               <button
                 type="submit"
-                class="button is-link is-fullwidth has-text-weight-medium is-medium mb-3"
+                class="button is-link is-fullwidth has-text-weight-medium is-medium mb-3 is-rounded"
                 onClick={handleUpdate}
+                style={{backgroundColor: "#EF233C"}}
               >
                 Update Note
               </button>
               <button
                 type="submit"
-                class="button is-link is-fullwidth has-text-weight-medium is-medium"
+                class="button is-link is-fullwidth has-text-weight-medium is-medium is-rounded"
                 onClick={handleClick}
+                style={{backgroundColor: "#EF233C"}}
               >
                 Cancel
               </button>

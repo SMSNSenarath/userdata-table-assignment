@@ -1,14 +1,17 @@
+//Importing Libraries
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+
+//Importing Components
 import Navbar from "../../components/Navbar";
 
 const LoginAdmin = () => {
   //Declare states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isFethching, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   let navigate = useNavigate();
 
@@ -26,7 +29,7 @@ const LoginAdmin = () => {
       );
       dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
       const user = response.data;
-      if(user.accountType == "admin"){
+      if(user.accountType === "admin"){
         navigate("/admin-dashboard");
       }else{
         alert("Access denied! You are not an admin!");

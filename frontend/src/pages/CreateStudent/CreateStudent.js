@@ -1,8 +1,12 @@
+//Importing Libraries
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 
+//Importing Components
+import Navbar from "../../components/Navbar";
+
+//Importing CSS
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateStudent = () => {
@@ -64,7 +68,9 @@ const CreateStudent = () => {
     };
     try{
         const response = await axios.post("http://localhost:5000/api/user/register", studentDetails);
+        console.log(response);
         alert("Student added successfully!");
+       
     }catch(err){
       alert(err);
     }
@@ -77,7 +83,7 @@ const CreateStudent = () => {
         <div class="column is-half is-offset-one-quarter">
           <form>
           <div class="row is-vcentered">
-            <h1 class="title is-1">Add a Student</h1>
+            <h1 class="title is-1" style={{color: "#2B2D42"}}>Add a Student</h1>
 
             <div class="field">
               <label class="label">Student Id</label>
@@ -179,14 +185,16 @@ const CreateStudent = () => {
                 <div class ="column is-4">
                 <button
                 type="submit"
-                class="button is-link has-text-weight-medium is-medium"
+                class="button is-link has-text-weight-medium is-medium is-rounded"
                 onClick={handleSubmit}
+                style={{backgroundColor: "#EF233C"}}
               >
                 Create Student
               </button>
               </div>
+              {/* Reset Button */}
               <div class="column is-8">
-              <input class="button is-link is-outlined has-text-weight-medium is-medium" type ="reset"/>
+              <input class="button is-outlined has-text-weight-medium is-medium is-rounded" type ="reset" style={{borderColor: "#EF233C", color:"#EF233C"}}/>
               </div>
               </div>
             </div>

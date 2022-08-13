@@ -1,3 +1,4 @@
+//Importing Libraries
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import {useNavigate, Link} from "react-router-dom";
@@ -19,31 +20,24 @@ const Navbar = () => {
   return (
     <>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation" style={{backgroundColor:"#2B2D42"}}>
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <Link to = "/" class="navbar-item" style={{fontSize:"1.5rem", backgroundColor:"transparent"}}>
         Home
       </Link>
     </div>
-
+    {/* Once a user logged in, shows user's name in the button */}
     {user?(<div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" style={{backgroundColor:"#a8dadc", color:"#2B2D42"}}>
+          <button class="button is-primary is-rounded" style={{backgroundColor:"#a8dadc", color:"#2B2D42"}}>
             <strong>{user.firstName} ({user.accountType.charAt(0).toUpperCase() +
                         user.accountType.slice(1)})</strong>
-          </a>
-          <a class="button is-light" style={{color: "#2B2D42"}} onClick={handleLogout}>
+          </button>
+          {/* Logout button */}
+          <button class="button is-light is-rounded" style={{color: "#2B2D42"}} onClick={handleLogout}>
             Log out
-          </a>
+          </button>
         </div>
       </div>
     </div>):("")}

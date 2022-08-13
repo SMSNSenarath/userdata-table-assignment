@@ -1,6 +1,8 @@
+//Importing Libraries
 import React, { useState } from "react";
 import axios from "axios";
 
+//Importing Components
 import ViewProfile from "./ViewProfile";
 
 const Search = () => {
@@ -10,6 +12,7 @@ const Search = () => {
   const [queryEmail, setQueryEmail] = useState("");
   const [queryUserId, setQueryUserId] = useState(0);
 
+//Declaring onChange methods
   const onChangeFirstName = (e) => {
     e.preventDefault();
     setQueryFirstName(e.target.value);
@@ -25,6 +28,7 @@ const Search = () => {
     setQueryUserId(e.target.value);
   };
 
+//Declaring search button methods
   const onSearchByFirstName = async () => {
     const res = await axios.post(
       "http://localhost:5000/api/user/search-by-name",
@@ -75,8 +79,9 @@ const Search = () => {
                 onChange={onChangeFirstName}
               />
             </div>
+            {/* Search by First Name */}
             <div class="control">
-              <a class="button is-info" onClick={onSearchByFirstName}>
+              <a class="button is-info is-rounded" onClick={onSearchByFirstName} style={{backgroundColor: "#2B2D42"}}>
                 Search
               </a>
             </div>
@@ -92,8 +97,9 @@ const Search = () => {
                 onChange={onChangeUserId}
               />
             </div>
+            {/* Search by User ID */}
             <div class="control">
-              <a class="button is-info" onClick={onSearchByUserId}>
+              <a class="button is-info is-rounded" onClick={onSearchByUserId} style={{backgroundColor: "#2B2D42"}}>
                 Search
               </a>
             </div>
@@ -109,8 +115,9 @@ const Search = () => {
                 onChange={onChangeEmail}
               />
             </div>
+            {/* Search by Email */}
             <div class="control">
-              <a class="button is-info" onClick={onSearchByEmail}>
+              <a class="button is-info is-rounded" onClick={onSearchByEmail} style={{backgroundColor: "#2B2D42"}}>
                 Search
               </a>
             </div>
@@ -119,9 +126,9 @@ const Search = () => {
         <div class="column has-text-centered">
           <div class="field has-addons mt-5">
             <div class="control">
-              <a class="button is-danger is-fullwidth" onClick={onClearUsers}>
+              <button class="button  is-fullwidth is-rounded" onClick={onClearUsers} style={{backgroundColor: "#EF233C", color:"#ffffff"}}>
                 Clear Users
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -1,15 +1,17 @@
+//Importing Libraries
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import Navbar from "../../components/Navbar";
 
+//Importing Components
+import Navbar from "../../components/Navbar";
 
 const Login = () => {
     //Declare states
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {isFethching, dispatch} = useContext(AuthContext);
+    const {dispatch} = useContext(AuthContext);
 
     let navigate = useNavigate();
 
@@ -65,7 +67,6 @@ const Login = () => {
                       />
                     </div>
                   </div>
-
                   <div className="field">
                     <div className="control">
                       <input

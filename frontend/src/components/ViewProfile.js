@@ -1,5 +1,7 @@
+//Importing Libraries
 import React from "react";
 
+//Importing CSS
 import "./ViewProfile.css";
 
 const ViewProfile = ({ active, handleRowClick, user }) => {
@@ -41,7 +43,7 @@ const ViewProfile = ({ active, handleRowClick, user }) => {
                         Born on - {user.dateOfBirth.toString().slice(0, 10)}{" "}
                         <br /> <br />
                         To Contact -{" "}
-                        <span class="tag is-primary is-medium">
+                        <span class="tag is-primary is-medium" style={{backgroundColor: "#2B2D42"}}>
                           {user.mobile}
                         </span>
                       </p>
@@ -50,16 +52,19 @@ const ViewProfile = ({ active, handleRowClick, user }) => {
                       <img
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/800px-User-avatar.svg.png"
                         width={200}
+                        alt="userImage"
                         style={{ marginTop: "-20px" }}
                       />
                       <h1 class="title is-4">{user.email}</h1>
                       <p class="description">
                         Find {user.firstName} from this email address
                       </p>
+                      {/* Back button */}
                       <form>
                         <button
-                          class="button is-block is-primary is-fullwidth is-medium"
+                          class="button is-block is-primary is-fullwidth is-medium is-rounded"
                           onClick={cancelClick}
+                          style={{backgroundColor: "#EF233C"}}
                         >
                           Back
                         </button>

@@ -1,7 +1,11 @@
+//Importing Libraries
 import React from "react";
 import { Link } from "react-router-dom";
+
+//Importing Components
 import Navbar from "../../components/Navbar";
 
+//Importing CSS
 import "./NotFound.css";
 
 const NotFound = () => {

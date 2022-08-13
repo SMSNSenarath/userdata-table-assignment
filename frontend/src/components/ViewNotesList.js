@@ -1,8 +1,11 @@
+//Importing Libraries
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-import Note from "./Note";
 import { ThreeDots } from "react-loader-spinner";
+
+//Importing Components
+import Note from "./Note";
 
 const ViewNotesList = () => {
   const [notes, setNotes] = useState(null);
@@ -15,6 +18,7 @@ const ViewNotesList = () => {
     headers: { token: user.accessToken },
   };
 
+  //On component load, get notes from the DB
   useEffect(() => {
     const getNotes = async () => {
       const res = await axios.get(
@@ -26,8 +30,6 @@ const ViewNotesList = () => {
     };
     getNotes();
   }, [pageNumber]);
-
-  console.log(notes);
 
   const active = isModal ? "is-active" : "";
 
@@ -43,9 +45,9 @@ const ViewNotesList = () => {
 
   return (
     <div class="column has-text-left">
-      <h1 class="title is-1">My Notes</h1>
+      <h1 class="title is-1" style= {{color:"#2B2D42"}}>My Notes</h1>
               {/* Pagination */}
-              <nav class="pagination" role="navigation" aria-label="pagination">
+              <nav class="pagination is-rounded" role="navigation" aria-label="pagination" >
         <a class="pagination-previous" onClick={goPrevious}>
           Previous
         </a>
@@ -73,7 +75,7 @@ const ViewNotesList = () => {
       {notes ? (
         notes.map((note) => <Note note={note} />)
       ) : (
-        <ThreeDots color="#a8dadc" height={80} width={80} />
+        <ThreeDots color="#EF233C" height={80} width={80} />
       )}
 
     </div>

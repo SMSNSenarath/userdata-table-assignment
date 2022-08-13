@@ -5,6 +5,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { AuthContextProvider,AuthContext} from "./context/AuthContext";
+import { useContext } from "react";
 
 //Importing components
 import Home from "./pages/Home/Home";
@@ -13,8 +15,6 @@ import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import CreateStudent from "./pages/CreateStudent/CreateStudent";
-import { AuthContextProvider,AuthContext} from "./context/AuthContext";
-import { useContext } from "react";
 import NotFound from "./pages/NotFound/NotFound";
 import StudentProtectedRoutes from "./ProtectedRoutes/StudentProtectedRoutes";
 import AdminProtectedRoutes from "./ProtectedRoutes/AdminProtectedRoutes";

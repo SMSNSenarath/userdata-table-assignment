@@ -1,5 +1,7 @@
+//Importing Libraries
 import React, { useState } from "react";
 
+//Importing Components
 import ViewProfile from "../components/ViewProfile";
 
 const UserRow = ({ user }) => {
@@ -11,8 +13,8 @@ const UserRow = ({ user }) => {
 
   const active = isModal ? "is-active" : "";
 
-  const activeStatus = <span class="tag is-success">Active</span>;
-  const inactiveStatus = <span class="tag is-danger">Inactive</span>;
+  const activeStatus = <span class="tag is-success is-rounded">Active</span>;
+  const inactiveStatus = <span class="tag is-danger is-rounded">Inactive</span>;
 
   return (
     <>
@@ -26,8 +28,9 @@ const UserRow = ({ user }) => {
       <td>{user.accountType}</td>
       <td>
         <button
-          class="button is-light is-link is-small"
+          class="button is-light is-link is-small is-rounded"
           onClick={handleRowClick}
+          style={{color:"#2B2D42"}}
         >
           View
         </button>

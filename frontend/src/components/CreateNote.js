@@ -1,7 +1,7 @@
+//Importing Libraries
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-
 
 const CreateNote = () => {
   //Declare states
@@ -22,6 +22,7 @@ const CreateNote = () => {
     const res = await axios.post(`http://localhost:5000/api/note/create/`,noteDetails, token)
     .then(()=>{
       alert("Note created successfully!");
+      console.log(res);
       window.location.reload();
     })
     .catch((err)=>{
@@ -42,7 +43,7 @@ const CreateNote = () => {
   return (
     <>
       <div class="column is-one-third has-text-left">
-        <h1 class="title is-1">Add a Note</h1>
+        <h1 class="title is-1" style={{color: "#2B2D42"}}>Add a Note</h1>
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
@@ -58,8 +59,9 @@ const CreateNote = () => {
         <div class="control">
           <button
             type="submit"
-            class="button is-link is-fullwidth has-text-weight-medium is-medium"
+            class="button is-link is-fullwidth has-text-weight-medium is-medium is-rounded"
             onClick={submitNote}
+            style={{backgroundColor: "#EF233C"}}
           >
             Create Note
           </button>
